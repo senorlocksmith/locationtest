@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @setting.name %>
+</p>
+
+<p>
+  <strong>Placement:</strong>
+  <%= @setting.placement %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @setting.description %>
+</p>
+
+<p>
+  <strong>S filming date:</strong>
+  <%= @setting.s_filming_date %>
+</p>
+
+<p>
+  <strong>E filming date:</strong>
+  <%= @setting.e_filming_date %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @setting.project.name %>
+</p>
+
+<p>
+  <strong>Properties:</strong>
+  <% @setting.properties.each do |property| %>
+    <li><%= property.name %></li>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_project_setting_path %> |
+<%= link_to 'Back', project_settings_path %>

@@ -1,0 +1,55 @@
+<%= form_with(model: [@project, setting], local: true) do |form| %>
+  <% if setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+      <ul>
+        <% setting.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :placement %>
+    <%= form.text_field :placement %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :s_filming_date %>
+    <%= form.date_select :s_filming_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :e_filming_date %>
+    <%= form.date_select :e_filming_date %>
+  </div>
+
+
+  <div class="field">
+  <%= hidden_field_tag "setting[property_ids][]", nil %>
+  <% Property.all.each do |property| %>
+    <%= check_box_tag "setting[property_ids][]", property.id, @setting.property_ids.include?(property.id), id: dom_id(property) %>
+    <%= label_tag dom_id(property), property.name %><br>
+  <% end %>
+
+</div>
+
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
